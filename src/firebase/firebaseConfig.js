@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA0Yi4i7YNxxgwDuL_yLL-0wRmjE93a9pU",
-  authDomain: "facediary-f4e40.firebaseapp.com",
-  projectId: "facediary-f4e40",
-  storageBucket: "facediary-f4e40.appspot.com",
-  messagingSenderId: "454089429303",
-  appId: "1:454089429303:web:103be513872a1a1c0a4ab2"
+  apiKey: "AIzaSyBeYzSkGNPSVLCMgP0wcjjE2Uro8ITWrSw",
+  authDomain: "face-hasan.firebaseapp.com",
+  projectId: "face-hasan",
+  storageBucket: "face-hasan.appspot.com",
+  messagingSenderId: "62192079408",
+  appId: "1:62192079408:web:8bbee9f7d76a58b6cbd3f5"
 };
 
 // Initialize Firebase
