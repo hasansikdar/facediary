@@ -10,17 +10,18 @@ const Header = () => {
     const navigate = useNavigate();
 
     const handleSingOut = () => {
-        handleLogOut()
-            .then(res => {
-                const agree = window.confirm('Are your sure want to Logout ?');
-                if (agree) {
+        const agree = window.confirm('Are your sure want to Logout ?');
+        if (agree) {
+            handleLogOut()
+                .then(res => {
                     toast.success('Logout Successfull');
-                    navigate('/join');
-                }
-            })
-            .catch(error => {
-                toast(error.message);
-            })
+                    navigate('/login');
+
+                })
+                .catch(error => {
+                    toast(error.message);
+                })
+        }
     }
 
     return (
@@ -32,18 +33,20 @@ const Header = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><Link to='/home'>Home</Link></li>
-                            <li><Link to='/mynetwork'>My Network</Link></li>
-                            <li><Link to='/jobs'>Jobs</Link></li>
+                            {/* <li><Link to='/home'>Home</Link></li> */}
+                            <li><Link to='/media'>Media</Link></li>
+                            <li><Link to='/about'>About</Link></li>
+                            <li><Link to='/message'>Message</Link></li>
                         </ul>
                     </div>
                     <Link to='/' className="btn btn-ghost normal-case text-xl"><img className='w-full h-full' src={Logo} alt="" /></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li><Link to='/home'>Home</Link></li>
-                        <li><Link to='/mynetwork'>My Network</Link></li>
-                        <li><Link to='/jobs'>Jobs</Link></li>
+                        {/* <li><Link to='/home'>Home</Link></li> */}
+                        <li><Link to='/media'>Media</Link></li>
+                        <li><Link to='/about'>About</Link></li>
+                        <li><Link to='/message'>Messeage</Link></li>
                         {
                             user?.email ? <></> : <>
                                 {loading ? <div>Loading...</div> : <>

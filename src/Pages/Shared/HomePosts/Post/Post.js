@@ -1,12 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import { Link } from 'react-router-dom';
-import { FaRegTrashAlt } from "react-icons/fa";
-import { AuthContext } from '../../../UserContext/UserContext';
 
-const Post = ({ post}) => {
-    const {DeletePostItem} = useContext(AuthContext);
-    const { userName, userEmail, userPhoto, postImage, caption, _id } = post;
+const Post = ({ post }) => {
+    const { userName, userEmail, userPhoto, postImage, caption } = post;
     return (
         <div>
             <div className="card border !w-full my-5 bg-base-100 shadow-xl">
@@ -17,23 +13,8 @@ const Post = ({ post}) => {
                             <h3>{userName}</h3>
                             <span>{userEmail}</span>
                         </div>
-                        <div className='ml-auto'>
-                            <div className="dropdown dropdown-end">
-                                <label tabIndex={0} className="btn m-1">...</label>
-                                <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li><Link to={`/postdetails/${_id}`} className='btn-sm btn my-2 text-white py-2'>Details</Link></li>
-                                    <li><button onClick={() => DeletePostItem(_id)} className='btn-sm btn btn-error my-2 py-2'><FaRegTrashAlt className='text-white'></FaRegTrashAlt></button></li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
-                    <p>{caption.length > 100 ?
-                        <>
-                            {caption.slice(0, 100)}
-                            < Link className='hover:link font-bold' to={`/postdetails/${_id}`}> See More...</Link>
-                        </>
-
-                        : caption}</p>
+                    <p>{caption}</p>
 
                 </div>
                 {postImage && <figure>
@@ -72,7 +53,7 @@ const Post = ({ post}) => {
 
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 

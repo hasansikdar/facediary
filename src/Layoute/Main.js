@@ -9,16 +9,8 @@ const Main = () => {
     return (
         <div>
             <Header></Header>
-            <div className='grid grid-cols-1 lg:grid-cols-3 min-h-screen w-11/12 mx-auto'>
-                <div className=''>
-                    <LeftSite></LeftSite>
-                </div>
-                <div className=''>
-                    <Outlet></Outlet>
-                </div>
-                <div className=''>
-                    <RightSide></RightSide>
-                </div>
+            <div className='w-11/12 mx-auto'>
+                <Outlet></Outlet>
             </div>
             <Footer></Footer>
         </div>

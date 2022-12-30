@@ -61,7 +61,7 @@ const PostBox = () => {
             if(data.acknowledged){
                 toast.success('Post Success');
                 refetch();
-                navigate('/profile')
+                navigate('/media')
             }
         })
     }
@@ -73,7 +73,7 @@ const PostBox = () => {
                 <div>
                     <img className='w-10 rounded-full h-10' src={user?.photoURL} alt="" />
                     {/* <input disabled placeholder='What is your mind?' type="text" /> */}
-                    <label htmlFor="my-modal-3" className="input input-bordered w-80 w-full py-2 cursor-pointer">What is Your Mind?</label>
+                    <label htmlFor="my-modal-3" className="input input-bordered w-80 mx-auto py-3 cursor-pointer">What's On Your Mind?</label>
                     {/* <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" /> */}
                     <PostModalBOx handlePost={handlePost}></PostModalBOx>
                 </div>

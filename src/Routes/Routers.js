@@ -1,37 +1,46 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../Layoute/Main';
 import Home from '../Pages/Home/Home';
-import Jobs from '../Pages/Jobs/Jobs';
+import Media from '../Pages/Media/Media';
 import Join from '../Pages/Join/Join';
 import Login from '../Pages/Login/Login';
-import Mynetwork from '../Pages/Mynetwork/Mynetwork';
+import About from '../Pages/About/About';
 import Profile from '../Pages/Profile/Profile';
+import Message from '../Pages/Message/Message';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import PostDetails from '../Pages/PostDetails/PostDetails';
+import { AuthContext } from '../UserContext/UserContext';
 
 const Routers = createBrowserRouter([
     {
         path: '/',
-        element: <Main></Main>,
+        element: <PrivateRoute><Main></Main></PrivateRoute>,
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <PrivateRoute><Home></Home></PrivateRoute>
             },
             {
-                path: '/home',
-                element: <Home></Home>
+                path: '/message',
+                element: <Message></Message>
             },
             {
                 path: '/profile',
                 element: <Profile></Profile>
             },
             {
-                path: '/mynetwork',
-                element: <Mynetwork></Mynetwork>
+                path: '/about',
+                element: <About></About>
             },
             {
-                path: '/jobs',
-                element: <Jobs></Jobs>
+                path: '/media',
+                element: <Media></Media>
+            },
+            {
+                path: '/postdetails/:id',
+                element: <PostDetails></PostDetails>,
+                loader: ({ params }) => fetch(`https://facediary.vercel.app/posts/${params.id}`)
             }
         ]
     },
@@ -42,8 +51,11 @@ const Routers = createBrowserRouter([
     {
         path: '/login',
         element: <Login></Login>
-    }
+    },
     
+    
+
+
 ])
 
 export default Routers;

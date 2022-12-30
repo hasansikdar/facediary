@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../UserContext/UserContext';
 import Googleicon from '../../Assets/Googleicon.png';
@@ -10,7 +10,8 @@ const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
-
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/';
 
     const handleLogin = data => {
         const { email, password } = data;
@@ -52,7 +53,7 @@ const Login = () => {
             .then(data => {
                 if (data.acknowledged) {
                     toast.success('Google Login Success')
-                    navigate('/');
+                    navigate(from, {replace: false});
                 }
             })
     }

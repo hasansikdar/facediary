@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
-import { AuthContext } from '../../UserContext/UserContext';
-import Post from './Post/Post';
+import { AuthContext } from '../../../UserContext/UserContext';
+import Post from '../../Posts/Post/Post';
 
-const Posts = () => {
-    const { refetch } = useContext(AuthContext);
+const HomePosts = () => {
+    const {refetch } = useContext(AuthContext);
 
 
 
@@ -12,7 +12,7 @@ const Posts = () => {
     const { data: posts = [], } = useQuery({
         queryKey: ['posts'],
         queryFn: async () => {
-            const res = await fetch('https://facediary.vercel.app/posts');
+            const res = await fetch('https://facediary.vercel.app/homeposts');
             const data = await res.json();
             refetch();
             return data;
@@ -30,4 +30,4 @@ const Posts = () => {
     );
 };
 
-export default Posts;
+export default HomePosts;

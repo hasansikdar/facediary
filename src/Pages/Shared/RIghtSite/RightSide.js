@@ -8,7 +8,7 @@ const RightSide = () => {
     return (
         <div className='mx-5'>
             <div className='profile  my-4 shadow-xl border text-center'>
-                <iframe className='rounded-xl' width="100%" height="315" src="https://www.youtube.com/embed/EFUD2MulXY0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <img src="https://img.freepik.com/premium-vector/social-networks-set_578229-307.jpg?w=2000" alt="" />
             </div>
         </div>
     );

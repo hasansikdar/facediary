@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from '../../UserContext/UserContext';
 import Googleicon from '../../Assets/Googleicon.png';
 import { toast } from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
 
 const Profile = () => {
     const { CreateUser, user, updateprofile, GoogleLogin, } = useContext(AuthContext);
@@ -11,8 +12,20 @@ const Profile = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
+    const {data:userInfo = {}, } = useQuery({
+        queryKey: ['email'],
+        queryFn: async () => {
+            const res = await fetch(`https://facediary.vercel.app/users?email=${user?.email}`);
+            const data = res.json();
+            return data;
+        }
+    });
+
+    console.log(userInfo);
+
 
     const handleUpdateProfileInfo = (info) => {
+        console.log(info);
         setLoading(true);
         const imagefile = info?.profileImage[0];
         const imagedata = new FormData();
@@ -45,7 +58,9 @@ const Profile = () => {
         // const { name, password, email } = info;
         const userinfo = {
             name:info?.name,
-            profileImage: imageLink
+            profileImage: imageLink,
+            university:info?.university
+
         }
 
         fetch(`https://facediary.vercel.app/users?email=${user?.email}`, {
@@ -80,6 +95,13 @@ const Profile = () => {
                                 </label>
                                 <input defaultValue={user?.displayName} {...register('name')} type="text" placeholder="Name" className="input input-bordered" />
                                 {errors?.name && <span className='text-red-500 mt-2'>{errors?.name?.message}</span>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">University</span>
+                                </label>
+                                <input defaultValue={userInfo?.university} {...register('university')} type="text" placeholder="University" className="input input-bordered" />
+                                {errors?.university && <span className='text-red-500 mt-2'>{errors?.university?.message}</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
